@@ -1,25 +1,35 @@
 import React from 'react';
 import {
-  StyleSheet, ImageBackground, Dimensions, Text, View, Platform, TextInput, TouchableOpacity, Image } from 'react-native'
-import { Feather as Icon } from '@expo/vector-icons'
+  StyleSheet,
+  ImageBackground,
+  Dimensions,
+  Text,
+  View,
+  Platform,
+  TextInput,
+  TouchableOpacity,
+  Image,
+} from 'react-native'
+import { Feather as Icon, FontAwesome as Font } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 
-const Login = () => {
-  const widthCemm = Dimensions.get('window').width;
-
+const Home = () => {
   const navigation = useNavigation()
 
-  function handleNavigationToSignup() {
-    navigation.navigate('Signup')
+  const widthCemm = Dimensions.get('window').width;
+
+  function handleNavigateToBack() {
+    navigation.goBack()
   }
 
   return (
     <ImageBackground
       style={styles.container}
-      source={require('../../temp/cover-bg.png')}
+      source={require('../../temp/cover-signup.png')}
       imageStyle={{
         width: widthCemm,
-        height: (Platform.OS === "ios") ? 650 : 550
+        height: (Platform.OS === "ios") ? 460 : 432,
+        paddingTop: 100
       }}
     >
 
@@ -37,31 +47,42 @@ const Login = () => {
 
 
       <View style={styles.login}>
-        <Text style={styles.loginTitle}>LOGIN</Text>
+        <Icon onPress={handleNavigateToBack} style={styles.goBack} name='arrow-left' size={34} color='#ED3978' />
+        <Text style={styles.loginTitle}>SIGNUP</Text>
       </View>
 
       <View style={styles.inputBox}>
-          <TextInput
-            style={styles.inputs}
-            placeholder='Username'
-            placeholderTextColor={'#989898'}
-          />
-          <Icon style={styles.iconUser} name='user' size={24} color='#989898' />
+        <TextInput
+          style={styles.fullName}
+          placeholder='Full Name'
+          placeholderTextColor={'#989898'}
+        />
 
-          <TextInput
-            style={styles.inputs}
-            placeholder='Password'
-            secureTextEntry
-            placeholderTextColor={'#989898'}
-          />
+        <TextInput
+          style={styles.inputs}
+          placeholder='Username'
+          placeholderTextColor={'#989898'}
+        />
+        <Icon style={styles.iconUser} name='user' size={24} color='#989898' />
+
+        <TextInput
+          style={styles.inputs}
+          placeholder='Password'
+          secureTextEntry
+          placeholderTextColor={'#989898'}
+        />
         <Icon style={styles.iconUser} name='lock' size={24} color='#989898' />
       </View>
 
 
       <View style={styles.signupBox}>
-        <TouchableOpacity activeOpacity={.7} onPress={handleNavigationToSignup}>
-          <Text style={styles.signup}>SIGNUP</Text>
-        </TouchableOpacity>
+        <View >
+          <Text style={styles.signup}>Signup using</Text>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+            <Font style={{ marginRight: 20, marginTop: 10 }} name="facebook-square" size={40} color='#43609c' />
+            <Font style={{ marginTop: 10 }} name="google-plus" size={40} color='#cf473b' />
+          </View>
+        </View>
 
         <TouchableOpacity activeOpacity={.7}>
           <Image source={require('../../temp/goButton.png')}
@@ -86,7 +107,7 @@ const styles = StyleSheet.create({
   },
 
   top: {
-    height: (Platform.OS === "ios") ? 500 : 420
+    height: (Platform.OS === "ios") ? 360 : 320
   },
 
   bottom: {
@@ -136,8 +157,14 @@ const styles = StyleSheet.create({
   },
 
   login: {
-    alignItems: 'flex-end',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
     marginRight: 36,
+  },
+
+  goBack: {
+    marginLeft: 40,
   },
 
   loginTitle: {
@@ -149,6 +176,21 @@ const styles = StyleSheet.create({
 
   inputBox: {
     alignItems: 'center'
+  },
+
+  fullName: {
+    width: 360,
+    height: 60,
+    backgroundColor: '#FFF',
+    borderRadius: 30,
+    paddingLeft: 30,
+    paddingRight: 50,
+    paddingVertical: 15,
+    fontFamily: 'Poppins_400Regular',
+    fontSize: 14,
+    lineHeight: 21,
+    marginBottom: 12,
+    marginTop: 20,
   },
 
   inputs: {
@@ -173,17 +215,17 @@ const styles = StyleSheet.create({
   },
   signupBox: {
     height: 80,
-    marginTop: 20,
+    marginTop: (Platform.OS === 'ios') ? 80 : 50,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingLeft: 40,
+    paddingLeft: 25,
   },
 
   signup: {
     fontFamily: 'Poppins_500Medium',
     color: '#989898',
-    fontSize: 18
+    fontSize: 14
   },
 
   linearGradient: {
@@ -195,4 +237,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default Login
+export default Home

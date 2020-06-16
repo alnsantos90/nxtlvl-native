@@ -10,7 +10,7 @@ import {
   Poppins_500Medium,
   useFonts } from '@expo-google-fonts/poppins'
 
-import Login from './src/pages/Login'
+import Routes from './src/routes'
 
 
 export default function App() {
@@ -30,7 +30,7 @@ export default function App() {
   return (
     <>
       <StatusBar bbarStyle='light-content' backgroundColor='transparent' translucent/>
-      <Login />
+      <Routes />
     </>
   );
 }
