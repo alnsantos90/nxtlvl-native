@@ -1,36 +1,37 @@
 import * as React from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import { AppLoading } from 'expo'
+import { StatusBar } from 'react-native';
 
-const instructions = Platform.select({
-  ios: `Press Cmd+R to reload,\nCmd+D or shake for dev menu`,
-  android: `Double tap R on your keyboard to reload,\nShake or press menu button for dev menu`,
-});
+import { 
+  Poppins_900Black_Italic, 
+  Poppins_800ExtraBold_Italic, 
+  Poppins_200ExtraLight_Italic,
+  Poppins_400Regular,
+  Poppins_500Medium,
+  useFonts } from '@expo-google-fonts/poppins'
+
+import Login from './src/pages/Login'
+
 
 export default function App() {
+
+  const [fonstLoaded] = useFonts({
+    Poppins_900Black_Italic,
+    Poppins_800ExtraBold_Italic,
+    Poppins_200ExtraLight_Italic,
+    Poppins_400Regular,
+    Poppins_500Medium
+  })
+
+  if(!fonstLoaded){
+    return <AppLoading />
+  }
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.welcome}>Welcome to React Native!</Text>
-      <Text style={styles.instructions}>To get started, edit App.js</Text>
-      <Text style={styles.instructions}>{instructions}</Text>
-    </View>
+    <>
+      <StatusBar bbarStyle='light-content' backgroundColor='transparent' translucent/>
+      <Login />
+    </>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
