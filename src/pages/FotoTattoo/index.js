@@ -1,10 +1,29 @@
 import React from 'react'
 import { Dimensions, StyleSheet, View, Text, ImageBackground, Image, TouchableOpacity, Platform, ScrollView } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 
 
 const FotoTattoo = () => {
+  const navigation = useNavigation()
   const widthCem = Dimensions.get('screen').width
 
+
+  const images = [
+    'https://miro.medium.com/max/7776/0*xLXjzoXoUnZpRF1N',
+    'https://i.pinimg.com/originals/ac/0a/58/ac0a582edccf401cd84262634ad30451.jpg',
+    'https://demo.phlox.pro/tattoo/wp-content/uploads/sites/92/2019/02/steven-erixon-715059-unsplash.jpg',
+    'https://images.squarespace-cdn.com/content/v1/53eadbbae4b0ba68f27e6191/1561764489544-QA96OLPYBJGVI0Y0QQ44/ke17ZwdGBToddI8pDm48kNiEM88mrzHRsd1mQ3bxVct7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0s0XaMNjCqAzRibjnE_wBlkZ2axuMlPfqFLWy-3Tjp4nKScCHg1XF4aLsQJlo6oYbA/samuel-foster-trS4ergP-KM-unsplash.jpg',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR4WK_0nMvSCisYDE2dYgiWR89mYHBF7v6OjLyleBnP6NwvD1ha&usqp=CAU',
+    'https://mccrindle.com.au/wp-content/uploads/images/mohammad-faruque-197300-unsplash-1-2.jpg',
+    'https://pbs.twimg.com/media/EBZOT2OX4AIIftS.jpg',
+    'https://i2.wp.com/multisport.ph/wp-content/uploads/2017/08/jake-davies-170903-unsplash.jpg?resize=570%2C370&ssl=1',
+    'https://www.inkme.tattoo/wp-content/uploads/2016/05/lion-tattoo-designs-for-boys-and-girls21.jpg',
+    'https://images.unsplash.com/photo-1522687533888-1078974f88ec?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80',
+  ]
+
+  function handleNavigationBack() {
+    navigation.goBack()
+  }
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -18,7 +37,10 @@ const FotoTattoo = () => {
 
       <View style={styles.top}>
         <View style={styles.topBox}>
-          <TouchableOpacity style={styles.backIconBox} activeOpacity={0.7}>
+          <TouchableOpacity
+            style={styles.backIconBox}
+            activeOpacity={0.7}
+          >
             <Image source={require('../../temp/backIcon.png')}
               style={{ width: 19, height: 21 }} />
             <Text style={styles.menu}>MENU</Text>
@@ -29,6 +51,16 @@ const FotoTattoo = () => {
             <Text style={styles.titleDois}>LVL</Text>
           </View>
         </View>
+
+        <View style={styles.goBackBox}>
+          <TouchableOpacity
+            activeOpacity={.7}
+            onPress={handleNavigationBack}
+          >
+            <Image source={require('../../temp/goButton.png')}
+              style={styles.goBackBtn} />
+          </TouchableOpacity>
+        </View>
       </View>
 
 
@@ -38,28 +70,41 @@ const FotoTattoo = () => {
 
       <View style={styles.bottom}>
         <View style={styles.numberBox}>
-          <Text style={styles.number}>20</Text>
+          <Text style={styles.number}>{images.length}</Text>
           <Text style={styles.fotoDescription}>PHOTOS</Text>
         </View>
 
         <View style={styles.carousel}>
-          <ScrollView 
+          <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={{
               alignItems: 'center',
+              paddingHorizontal: 40,
+              marginTop: 10,
             }}
           >
-            <Image source={require('../../temp/pictures/1.png')} style={{marginHorizontal: 5}} />
+            {
+              images.map((image, index) => (
+                <Image 
+                  key={index}
+                  source={{uri: image}}
+                  style={{width: 80, height: 120, resizeMode: 'cover', marginRight: 10, borderRadius: 6,}}
+                />
+              ))
+            }
 
-            <Image source={require('../../temp/pictures/2.png')} style={{marginHorizontal: 5}} />
-
-            <Image source={require('../../temp/pictures/3.png')} style={{marginHorizontal: 5}} />
-
-            <Image source={require('../../temp/pictures/4.png')} style={{marginHorizontal: 5}} />
 
           </ScrollView>
         </View>
+
+        <TouchableOpacity
+          style={styles.viewBtn}
+          activeOpacity={0.7}
+        >
+          <Text style={styles.viewText}>VIEW ALL</Text>
+        </TouchableOpacity>
+
       </View>
     </View>
   )
@@ -102,6 +147,17 @@ const styles = StyleSheet.create({
     flexDirection: 'column'
   },
 
+  goBackBox: {
+    marginTop: 30,
+    marginLeft: -20
+  },
+
+  goBackBtn: {
+    height: 120,
+    width: 100,
+    transform: [{ rotate: '180deg' }],
+  },
+
   menu: {
     width: 45,
     fontFamily: 'Poppins_800ExtraBold',
@@ -132,7 +188,7 @@ const styles = StyleSheet.create({
   numberBox: {
     alignItems: 'flex-end',
     paddingRight: 40,
-    marginTop: (Platform.OS === 'ios') ? -30 : 30,
+    marginTop: (Platform.OS === 'ios') ? -60 : -20,
   },
 
   number: {
@@ -154,7 +210,26 @@ const styles = StyleSheet.create({
 
   carousel: {
     justifyContent: 'center',
-    marginLeft: 65,
+    // marginLeft: 65,
+    marginTop: (Platform.OS === 'ios') ? 0 : -30,
+    paddingLeft: (Platform.OS === 'ios') ? 5 : 17
+  },
+
+  viewBtn: {
+    alignSelf: 'center',
+    marginTop: (Platform.OS === 'ios') ? 30 : 20,
+    width: 120,
+    borderRadius: 25,
+    backgroundColor: '#fff',
+    paddingHorizontal: 25,
+    paddingVertical: 10,
+    alignItems: 'center',
+  },
+
+  viewText: {
+    fontSize: 12,
+    fontFamily: 'Poppins_600SemiBold',
+    color: '#4a4a4a',
   },
 
 })

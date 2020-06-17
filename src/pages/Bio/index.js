@@ -1,6 +1,7 @@
 import React from 'react'
 import { Dimensions, StyleSheet, View, Text, ImageBackground, Image, TouchableOpacity, Platform } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
+import { Feather as Icon } from '@expo/vector-icons'
 
 
 const Bio = () => {
@@ -9,6 +10,10 @@ const Bio = () => {
 
   function handleNavigationToFotoTattoo() {
     navigation.navigate('FotoTattoo')
+  }
+
+  function handleNavigationBack() {
+    navigation.goBack()
   }
   return (
     <View style={styles.container}>
@@ -23,22 +28,36 @@ const Bio = () => {
 
       <View style={styles.top}>
         <View style={styles.topBox}>
-          <TouchableOpacity 
-            style={styles.backIconBox} 
+          <TouchableOpacity
+            style={styles.backIconBox}
             activeOpacity={0.7}
-            onPress={handleNavigationToFotoTattoo}  
+            onPress={handleNavigationToFotoTattoo}
           >
             <Image source={require('../../temp/backIcon.png')}
               style={{ width: 19, height: 21 }} />
             <Text style={styles.menu}>MENU</Text>
           </TouchableOpacity>
 
+
           <View>
             <Text style={styles.title}>NXT</Text>
             <Text style={styles.titleDois}>LVL</Text>
           </View>
         </View>
+
+        <View style={styles.goBackBox}>
+          <TouchableOpacity
+            activeOpacity={.7}
+            onPress={handleNavigationBack}
+          >
+            <Image source={require('../../temp/goButton.png')}
+              style={styles.goBackBtn} />
+          </TouchableOpacity>
+        </View>
+
       </View>
+
+
 
 
       <View style={styles.bioBox}>
@@ -108,6 +127,17 @@ const styles = StyleSheet.create({
     transform: [{ rotate: '90deg' }],
     color: '#FFF',
     opacity: 0.3,
+  },
+
+  goBackBox: {
+    marginTop: 30,
+    marginLeft: -20
+  },
+
+  goBackBtn: {
+    height: 120,
+    width: 100,
+    transform: [{ rotate: '180deg' }],
   },
 
   title: {
