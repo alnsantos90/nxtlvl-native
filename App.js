@@ -8,6 +8,9 @@ import {
   Poppins_200ExtraLight_Italic,
   Poppins_400Regular,
   Poppins_500Medium,
+  Poppins_800ExtraBold,
+  Poppins_700Bold,
+  Poppins_300Light,
   useFonts } from '@expo-google-fonts/poppins'
 
 import Routes from './src/routes'
@@ -20,7 +23,10 @@ export default function App() {
     Poppins_800ExtraBold_Italic,
     Poppins_200ExtraLight_Italic,
     Poppins_400Regular,
-    Poppins_500Medium
+    Poppins_500Medium,
+    Poppins_800ExtraBold,
+    Poppins_700Bold,
+    Poppins_300Light
   })
 
   if(!fonstLoaded){

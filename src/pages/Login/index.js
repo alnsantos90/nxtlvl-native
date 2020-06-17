@@ -1,11 +1,12 @@
 import React from 'react';
 import {
-  StyleSheet, ImageBackground, Dimensions, Text, View, Platform, TextInput, TouchableOpacity, Image } from 'react-native'
+  StyleSheet, ImageBackground, Dimensions, Text, View, Platform, TextInput, TouchableOpacity, Image
+} from 'react-native'
 import { Feather as Icon } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 
 const Login = () => {
-  const widthCemm = Dimensions.get('window').width;
+  const widthCemm = Dimensions.get('screen').width;
 
   const navigation = useNavigation()
 
@@ -13,34 +14,40 @@ const Login = () => {
     navigation.navigate('Signup')
   }
 
+  function handleNavigationToBio() {
+    navigation.navigate('Bio')
+  }
+
   return (
-    <ImageBackground
-      style={styles.container}
-      source={require('../../temp/cover-bg.png')}
-      imageStyle={{
-        width: widthCemm,
-        height: (Platform.OS === "ios") ? 650 : 550
-      }}
-    >
+
+    <View style={styles.container}>
+      <ImageBackground
+        style={{}}
+        source={require('../../temp/cover-bg.png')}
+        imageStyle={{
+          width: widthCemm,
+          height: (Platform.OS === "ios") ? 650 : 550
+        }}
+      >
 
 
-      <View style={styles.top}>
-        <View style={styles.titleBox}>
-          <Text style={styles.title}>NXT</Text>
-          <Text style={styles.titleDois}>LVL</Text>
+        <View style={styles.top}>
+          <View style={styles.titleBox}>
+            <Text style={styles.title}>NXT</Text>
+            <Text style={styles.titleDois}>LVL</Text>
+          </View>
+          <View style={styles.tattooBox}>
+            <Text style={styles.tattoo}>Tattoo</Text>
+            <Text style={styles.studio}>Studio</Text>
+          </View>
         </View>
-        <View style={styles.tattooBox}>
-          <Text style={styles.tattoo}>Tattoo</Text>
-          <Text style={styles.studio}>Studio</Text>
+
+
+        <View style={styles.login}>
+          <Text style={styles.loginTitle}>LOGIN</Text>
         </View>
-      </View>
 
-
-      <View style={styles.login}>
-        <Text style={styles.loginTitle}>LOGIN</Text>
-      </View>
-
-      <View style={styles.inputBox}>
+        <View style={styles.inputBox}>
           <TextInput
             style={styles.inputs}
             placeholder='Username'
@@ -54,23 +61,24 @@ const Login = () => {
             secureTextEntry
             placeholderTextColor={'#989898'}
           />
-        <Icon style={styles.iconUser} name='lock' size={24} color='#989898' />
-      </View>
+          <Icon style={styles.iconUser} name='lock' size={24} color='#989898' />
+        </View>
 
 
-      <View style={styles.signupBox}>
-        <TouchableOpacity activeOpacity={.7} onPress={handleNavigationToSignup}>
-          <Text style={styles.signup}>SIGNUP</Text>
-        </TouchableOpacity>
+        <View style={styles.signupBox}>
+          <TouchableOpacity activeOpacity={.7} onPress={handleNavigationToSignup}>
+            <Text style={styles.signup}>SIGNUP</Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity activeOpacity={.7}>
-          <Image source={require('../../temp/goButton.png')}
-            style={{ height: 120, width: 100, }} />
-        </TouchableOpacity>
-      </View>
-
-
-    </ImageBackground>
+          <TouchableOpacity activeOpacity={.7} onPress={handleNavigationToBio}>
+            <Image 
+              source={require('../../temp/goButton.png')}
+              style={{ height: 120, width: 100, }} 
+            />
+          </TouchableOpacity>
+        </View>
+      </ImageBackground>
+    </View>
   )
 }
 
@@ -82,7 +90,6 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: '#e7e7e7'
   },
 
   top: {

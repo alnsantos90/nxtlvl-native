@@ -16,94 +16,87 @@ import { useNavigation } from '@react-navigation/native'
 const Home = () => {
   const navigation = useNavigation()
 
-  const widthCemm = Dimensions.get('window').width;
+  const widthCemm = Dimensions.get('screen').width;
+  const heightCem = Dimensions.get('screen').height
 
   function handleNavigateToBack() {
     navigation.goBack()
   }
 
   return (
-    <ImageBackground
-      style={styles.container}
-      source={require('../../temp/cover-signup.png')}
-      imageStyle={{
-        width: widthCemm,
-        height: (Platform.OS === "ios") ? 460 : 432,
-        paddingTop: 100
-      }}
-    >
+    <View style={styles.container}>
+      <ImageBackground
+        style={{}}
+        source={require('../../temp/cover-signup.png')}
+        imageStyle={{
+          width: widthCemm,
+          height: (Platform.OS === "ios") ? 460 : 432,
+        }}
+      />
 
 
-      <View style={styles.top}>
-        <View style={styles.titleBox}>
-          <Text style={styles.title}>NXT</Text>
-          <Text style={styles.titleDois}>LVL</Text>
-        </View>
-        <View style={styles.tattooBox}>
-          <Text style={styles.tattoo}>Tattoo</Text>
-          <Text style={styles.studio}>Studio</Text>
-        </View>
-      </View>
-
-
-      <View style={styles.login}>
-        <Icon onPress={handleNavigateToBack} style={styles.goBack} name='arrow-left' size={34} color='#ED3978' />
-        <Text style={styles.loginTitle}>SIGNUP</Text>
-      </View>
-
-      <View style={styles.inputBox}>
-        <TextInput
-          style={styles.fullName}
-          placeholder='Full Name'
-          placeholderTextColor={'#989898'}
-        />
-
-        <TextInput
-          style={styles.inputs}
-          placeholder='Username'
-          placeholderTextColor={'#989898'}
-        />
-        <Icon style={styles.iconUser} name='user' size={24} color='#989898' />
-
-        <TextInput
-          style={styles.inputs}
-          placeholder='Password'
-          secureTextEntry
-          placeholderTextColor={'#989898'}
-        />
-        <Icon style={styles.iconUser} name='lock' size={24} color='#989898' />
-      </View>
-
-
-      <View style={styles.signupBox}>
-        <View >
-          <Text style={styles.signup}>Signup using</Text>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-            <Font style={{ marginRight: 20, marginTop: 10 }} name="facebook-square" size={40} color='#43609c' />
-            <Font style={{ marginTop: 10 }} name="google-plus" size={40} color='#cf473b' />
+        <View style={styles.top}>
+          <View style={styles.titleBox}>
+            <Text style={styles.title}>NXT</Text>
+            <Text style={styles.titleDois}>LVL</Text>
+          </View>
+          <View style={styles.tattooBox}>
+            <Text style={styles.tattoo}>Tattoo</Text>
+            <Text style={styles.studio}>Studio</Text>
           </View>
         </View>
 
-        <TouchableOpacity activeOpacity={.7}>
-          <Image source={require('../../temp/goButton.png')}
-            style={{ height: 120, width: 100, }} />
-        </TouchableOpacity>
-      </View>
+
+        <View style={styles.login}>
+          <Icon onPress={handleNavigateToBack} style={styles.goBack} name='arrow-left' size={34} color='#ED3978' />
+          <Text style={styles.loginTitle}>SIGNUP</Text>
+        </View>
+
+        <View style={styles.inputBox}>
+          <TextInput
+            style={styles.fullName}
+            placeholder='Full Name'
+            placeholderTextColor={'#989898'}
+          />
+
+          <TextInput
+            style={styles.inputs}
+            placeholder='Username'
+            placeholderTextColor={'#989898'}
+          />
+          <Icon style={styles.iconUser} name='user' size={24} color='#989898' />
+
+          <TextInput
+            style={styles.inputs}
+            placeholder='Password'
+            secureTextEntry
+            placeholderTextColor={'#989898'}
+          />
+          <Icon style={styles.iconUser} name='lock' size={24} color='#989898' />
+        </View>
 
 
-    </ImageBackground>
+        <View style={styles.signupBox}>
+          <View >
+            <Text style={styles.signup}>Signup using</Text>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+              <Font style={{ marginRight: 20, marginTop: 10 }} name="facebook-square" size={40} color='#43609c' />
+              <Font style={{ marginTop: 10 }} name="google-plus" size={40} color='#cf473b' />
+            </View>
+          </View>
+
+          <TouchableOpacity activeOpacity={.7}>
+            <Image source={require('../../temp/goButton.png')}
+              style={{ height: 120, width: 100, }} />
+          </TouchableOpacity>
+        </View>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: '#e7e7e7'
   },
 
   top: {
