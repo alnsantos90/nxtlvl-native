@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native'
 
 const FotoTattoo = () => {
   const navigation = useNavigation()
-  const widthCem = Dimensions.get('screen').width
+  const widthCem = Dimensions.get('window').width
 
 
   const images = [
@@ -24,6 +24,11 @@ const FotoTattoo = () => {
   function handleNavigationBack() {
     navigation.goBack()
   }
+
+  function handleNavigationToGallery() {
+    navigation.navigate('Gallery')
+  }
+
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -40,26 +45,17 @@ const FotoTattoo = () => {
           <TouchableOpacity
             style={styles.backIconBox}
             activeOpacity={0.7}
+            onPress={handleNavigationBack}
           >
             <Image source={require('../../temp/backIcon.png')}
               style={{ width: 19, height: 21 }} />
-            <Text style={styles.menu}>MENU</Text>
+            <Text style={styles.menu}>BACK</Text>
           </TouchableOpacity>
 
           <View>
             <Text style={styles.title}>NXT</Text>
             <Text style={styles.titleDois}>LVL</Text>
           </View>
-        </View>
-
-        <View style={styles.goBackBox}>
-          <TouchableOpacity
-            activeOpacity={.7}
-            onPress={handleNavigationBack}
-          >
-            <Image source={require('../../temp/goButton.png')}
-              style={styles.goBackBtn} />
-          </TouchableOpacity>
         </View>
       </View>
 
@@ -101,6 +97,7 @@ const FotoTattoo = () => {
         <TouchableOpacity
           style={styles.viewBtn}
           activeOpacity={0.7}
+          onPress={handleNavigationToGallery}
         >
           <Text style={styles.viewText}>VIEW ALL</Text>
         </TouchableOpacity>
@@ -147,17 +144,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column'
   },
 
-  goBackBox: {
-    marginTop: 30,
-    marginLeft: -20
-  },
-
-  goBackBtn: {
-    height: 120,
-    width: 100,
-    transform: [{ rotate: '180deg' }],
-  },
-
   menu: {
     width: 45,
     fontFamily: 'Poppins_800ExtraBold',
@@ -181,7 +167,7 @@ const styles = StyleSheet.create({
     fontSize: 26,
     color: '#FFF',
     position: 'relative',
-    bottom: 20,
+    bottom: (Platform.OS === 'ios') ? 20 : 28,
     left: 20,
   },
 

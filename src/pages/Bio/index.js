@@ -35,7 +35,7 @@ const Bio = () => {
           >
             <Image source={require('../../temp/backIcon.png')}
               style={{ width: 19, height: 21 }} />
-            <Text style={styles.menu}>MENU</Text>
+            <Text style={styles.menu}>FOTOS</Text>
           </TouchableOpacity>
 
 
@@ -118,12 +118,12 @@ const styles = StyleSheet.create({
   },
 
   menu: {
-    width: 45,
+    width: 50,
     fontFamily: 'Poppins_800ExtraBold',
     fontSize: 12,
     letterSpacing: 1.4,
     marginTop: 10,
-    paddingTop: 28,
+    paddingTop: 34,
     transform: [{ rotate: '90deg' }],
     color: '#FFF',
     opacity: 0.3,
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
     fontSize: 26,
     color: '#FFF',
     position: 'relative',
-    bottom: 20,
+    bottom: (Platform.OS === 'ios') ? 20 : 28,
     left: 20,
   },
 

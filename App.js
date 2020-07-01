@@ -12,6 +12,7 @@ import {
   Poppins_700Bold,
   Poppins_300Light,
   Poppins_600SemiBold,
+  Poppins_900Black,
   useFonts } from '@expo-google-fonts/poppins'
 
 import Routes from './src/routes'
@@ -28,7 +29,8 @@ export default function App() {
     Poppins_800ExtraBold,
     Poppins_700Bold,
     Poppins_300Light,
-    Poppins_600SemiBold
+    Poppins_600SemiBold,
+    Poppins_900Black
   })
 
   if(!fonstLoaded){
